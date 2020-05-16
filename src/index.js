@@ -1,19 +1,39 @@
-require('dotenv').config()
-
-const path = require('path');
-const express = require('express');
-const app = require('express')();
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+require("dotenv").config();
+const path = require("path");
+const express = require("express");
+const app = require("express")();
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+const bodyParser = require("body-parser");
+const cors = require('cors')
 const {mapShips} = require('./game/mapShips');
 const {struct} = require('./game/mapShips');
 
 const shipsMap = mapShips()
 const shipStruct = struct();
+const destroyed = [];
 
-const PORT = process.env.PORT || '8080'
+const PORT = process.env.PORT || "8080";
 
-let score = 0
+let score = 0;
+
+app.use(cors())
+app.use(express.static(path.join(__dirname, "/public/")));
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
+
+app.use(express.static(path.join(__dirname, 'public')))
+
+app.get("/", (req, res) => {
+  res.render("index", { title: "Batalha Naval" });
+});
+
+app.get("/game", (req, res) => {
+  res.render("game-screen", { score: score });
+});
 
 function shot(id){
   let wasHit = false;
@@ -51,15 +71,6 @@ function verifyShips(){
     }
   }
 }
-
-app.use(express.static(path.join(__dirname, 'public')))
-
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
-
-app.get('/', (req, res) => {
-  res.render('index', {title: 'Batalha Naval', score: score})
-})
 
 /* Socket */
 io.on('connection', (socket) => {

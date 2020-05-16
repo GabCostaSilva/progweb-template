@@ -1,16 +1,45 @@
+:root {
+  --main-bg-color: #1E344F;
+}
 body {
   height: 100vh;
-}
+  background: var(--main-bg-color);
+  color: #fff;
+    margin: 0;
+  }
+
 .root {
   width: 50%;
   margin: 0 auto;
   text-align: center;
 }
+
+/** Canvas **/
+.game-container { position: relative; }
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: transparent;
+}
+
+/** Layout **/
 .container {
   display: flex;
   justify-content: center;
 }
 
+.row {
+  display: flex;
+  justify-content: flex-start;
+  margin: 8px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
 .board {
   display: grid;
   grid-template-columns: repeat(10, 0.5fr);
@@ -68,7 +97,7 @@ display: flex;
   width: 64px;
   text-align: center;
   /* height: 24px; */
-  border: 1px black solid;
+  border: 1px #fff solid;
   border-radius: 8px;
 }
 

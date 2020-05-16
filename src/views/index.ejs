@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title><%= title %></title>
-  </head>
-  <body>
-    <div class="main">
-      <div id="root" class="board"></div>
-    </div>
-      <div id="sidebar1" class="sidebar">
-        <aside class="sidebar__content" aria-label="Sidebar with score points and other stuff." aria-hidden="true">
-          <div id="score">
-            <%= score %>
-          </div>
-        </aside>
+<%- include('header') -%>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col">
+        <form id="login" method="POST" action="auth/login">
+          <div class="form-group">
+            <label for="playername">Nome do jogador
+              <input type="text" class="form-control" id="playername" aria-describedby="Nome do jogador">
+            </label>
+            </div>
+          <input type="image" width="64px" height="64px" src="img/Play1.png">
+        </form>
       </div>
-    <button data-toggle-sidebar="sidebar1" aria-label="Toggle the document main sidebar visibility">Toggle Sidebar</button>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="script.js"></script>
-    <script src="socket.js"></script>
-  </body>
-</html>
+    </div>
+  </div>
+<%- include('footer') -%>
