@@ -5,7 +5,7 @@
 ![GitHub repo size](https://img.shields.io/github/repo-size/hsborges/progweb-template)
 ![GitHub contributors](https://img.shields.io/github/contributors/hsborges/progweb-template)
 
-Batalha Naval é um jogo de estratégia popular no mundo todo, conhecido pela possibilidade de jogá-lo somente com papel e caneta (e um oponente). Agora em sua versão século XXI. [Saiba mais sobre a história deste jogo](https://en.wikipedia.org/wiki/Battleship_(game)).
+Batalha Naval é um jogo de estratégia popular no mundo todo, conhecido pela possibilidade de jogá-lo somente com papel e caneta (e um oponente). Agora em sua versão século XXI. [Saiba mais sobre a história deste jogo](https://en.wikipedia.org/wiki/Battleship_(game)). Nesta versão os jogadores poderão desafiar seus amigos para uma partida, além de acompanharem seu histórico de pontuações e um ranking com a colocação geral.
 
 ## Planning
 
