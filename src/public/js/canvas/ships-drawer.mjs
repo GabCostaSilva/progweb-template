@@ -1,9 +1,10 @@
 import handles from './ships-settings.mjs'
-import {utils} from './utils.mjs'
+import { utils } from './utils.mjs'
 import createMatrix from './create-matrix.mjs'
 
 let ships_canvas = document.getElementById("ships-canvas");
 let ships_context = ships_canvas.getContext("2d");
+
 let ships_width = (ships_canvas.width = 1800);
 let ships_height = (ships_canvas.height = window.innerHeight );
 
@@ -12,11 +13,11 @@ let offset = {};
 let isDragging = false;
 let dragHandle;
 
-const X_MAX_BOUND = 462;
-const Y_MAX_BOUND = 462;
+const X_MAX_BOUND = 490;
+const Y_MAX_BOUND = 490;
 
-const X_MIN_BOUND = 40;
-const Y_MIN_BOUND = 40;
+const X_MIN_BOUND = 50;
+const Y_MIN_BOUND = 50;
 
 drawShips();
 
@@ -30,7 +31,7 @@ function drawShips() {
       ships_context.shadowBlur = 8;
     }
 
-    ships_context.fillStyle = handle.color;
+    ships_context.fillStyle = "#000";
     ships_context.beginPath();
     ships_context.rect(handle.x, handle.y, handle.width, handle.height);
     ships_context.fill();
@@ -63,22 +64,17 @@ function onMouseMove(event) {
 
 function onMouseUp(event) {
   if (
-    utils.inRange(dragHandle.x, X_MIN_BOUND, X_MAX_BOUND) &&
     utils.inRange(dragHandle.x + dragHandle.width, X_MIN_BOUND, X_MAX_BOUND) &&
-    utils.inRange(dragHandle.y, Y_MIN_BOUND, Y_MAX_BOUND) &&
     utils.inRange(dragHandle.y + dragHandle.height, Y_MIN_BOUND, Y_MAX_BOUND)
   ) {
-    let point = getClosestPoint(dragHandle)
-
-    if(point.y0 === 50)
-      dragHandle.x = point.x0
-    else {
-      console.log(dragHandle)
-      dragHandle.x = point.x0 + 10
-    }
-    dragHandle.y = point.y0
-  } else {
-    // point out of bounds
+    let closestPosition = getClosestPosition(dragHandle)
+    console.log(closestPosition)
+    if (dragHandle.x + dragHandle.width > 450)
+      dragHandle.x = closestPosition.x - 40
+    else
+      dragHandle.x = closestPosition.x
+    dragHandle.y = closestPosition.y
+  } else { // handle out of bounds
     dragHandle.x = dragHandle.origin_x;
     dragHandle.y = dragHandle.origin_y;
   }
@@ -90,19 +86,27 @@ function onMouseUp(event) {
   drawShips();
 }
 
-function getClosestPoint(point) {
+function getClosestPosition(point) {
   let distance;
   let lowestDistance = Number.MAX_VALUE
   let target = {}
+
+  let k = -1, m = -1;
+
   for(let i = 0; i < matrix.length; i++) {
     for(let j = 0; j < matrix[i].length;j++){
-      distance = utils.distanceXY(matrix[i][j].x0, matrix[i][j].y0, point.x, point.y)
-      if(distance <= lowestDistance) {
+      distance = utils.distanceXY(matrix[i][j].x, matrix[i][j].y, point.x, point.y)
+      if(distance <= lowestDistance && !matrix[i][j].filled) {
         lowestDistance = distance
         target = matrix[i][j]
+        k = i;
+        m = j;
       }
     }
   }
+
+  if(k >= 0 && m >= 0)
+    matrix[k][m].filled = true
 
   return target
 }
