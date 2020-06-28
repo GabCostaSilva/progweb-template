@@ -7,6 +7,7 @@ const path = require('path');
 const root = require('./routes/root');
 const routeLogin = require('./routes/login');
 const register = require('./routes/register');
+const helmet = require('helmet')
 
 const app = express();
 const server = require('http').createServer(app);
@@ -30,7 +31,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
-
+app.use(helmet())
 
 app.use('/login', routeLogin);
 app.use('/register', register);
@@ -43,7 +44,7 @@ io.use((socket, next) => {
         let sessionID = data.signedCookies[config.KEY];
         store.get(sessionID, (err, session) => {
             if (err || !session) {
-                return next(new Error('Acesso negado!'));
+                return next(new Error('Acesso Negado!'));
             } else {
                 socket.handshake.session = session;
                 return next();
@@ -52,6 +53,9 @@ io.use((socket, next) => {
     });
 });
 
-server.listen(3000, () => {
-    console.log('Server rodando em http://localhost:3000');
+const PORT = process.env.PORT || 3000
+
+server.listen(PORT, () => {
+    if(process.env.NODE_ENV === 'development')
+        console.log(`Server rodando em http://localhost:${PORT}`);
 });

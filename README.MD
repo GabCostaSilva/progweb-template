@@ -17,30 +17,25 @@ Antes de iniciar, certifique-se de cumprir os seguintes requisitos:
 
 - Um web browser atualizado, como Google Chrome ou Mozilla Firefox.
 
-- yarn ou npm
-
-- Possuir Redis instalado e rodando na port padrão(6379)
+- Docker v19.03.12
 
 ## Como executar
 
-Execute os comandos<br>
+Execute o comando<br>
 
-`yarn`<br>
-`yarn start`<br>
+`docker-compose up -d`<br>
 
-ou<br>
-
-`npm install`<br>
-`npm run start`<br>
-
-Após instalar as dependências e rodar o server, game estará rodando em <br><br>
+Após o término da instalação, o game estará rodando em <br><br>
 [http://localhost:3000](http://localhost:3000)
-## Usando Batalha Naval
+## Usando o Batalha Naval
 
-Para usar Batalha Naval, siga os seguintes passos:
-
-- Clique em qualquer célula disponível na tela.
-- Procure acertar posições ocupadas por navios
+Como jogar
+- É preciso se cadastrar no primeiro acesso.
+- Após obter o login, é só utilizar o username cadastrado e asenha.
+- Inicialmente o jogo roda somente em localhost.
+- Para poder jogar, dois browsers (ao menos) devem estarrodando em processos diferentes com usuários diferentes.
+- Pode-se criar uma sala e aguardar por um oponente, ou entãoclicar em algum jogador online na lista à esquerda.
+- Ao clicar no link da sala ou aceitar o convite de um jogador, você será redirecionado para a tela da partida onde será iniciado o jogo.
 
 ## Contribuidores
 
