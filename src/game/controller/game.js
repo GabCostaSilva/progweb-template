@@ -3,6 +3,7 @@ const Turn = require('../models/Turn');
 const Player = require('../models/Player');
 const ships = require('../libs/ships');
 const board = require('../libs/board');
+const matchDB = require('../../controller/match');
 
 const matches = {};
 
@@ -76,9 +77,20 @@ const finishGame = (room) => {
     matches[room][me].socket.emit('lose');
     matches[room][me].socket.disconnect();
     matches[room].start = false;
+    saveMatch(me, he, room);
     setTimeout(() => {
         delete matches[room];
     }, 3000);
+}
+
+const saveMatch = (winner, loser, room) => {
+    let match = {
+        winner: winner,
+        loser: loser,
+        score: matches[room][winner].score,
+        timestamp: Date.now()
+    }
+    matchDB.insert(match);
 }
 
 const isStarted = (room) => {
@@ -177,10 +189,10 @@ const shot = (room, playerName, id) => {
         board[i][j].status = 'destroyed';
         board[i][j] = 'hited';
         setHit(room, playerName, id);
-        verifyShips(room, playerName);
         updateScore(matches[room][playerName]);
         sendScore(room, playerName);
         sendHit(room, playerName, id);
+        verifyShips(room, playerName);
         changeTurn(room);
     } else {
         setMiss(room, playerName, id);

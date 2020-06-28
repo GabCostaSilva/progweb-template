@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Narval - Home</title>
+
+    <script defer src="/js/jquery-3.5.1.min.js"></script>
+    <script defer src="/js/bootstrap.min.js"></script>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/js/game.js"></script>
+    <script defer src="/js/online.js"></script>
+    <script defer src="/js/utilitaries.js"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/message.css">
+    <link rel="stylesheet" href="/css/ranking.css">
+</head>
+
+<body>
+    <div id="msg" class="container"></div>
+    <%- include('partials/navbar') %>
+    <div id="wrapper">
+        <%- include('partials/ranking') %> 
+    </div>
+</body>
+
+
+</html>

@@ -4,30 +4,20 @@ router = express.Router();
 const rooms = require('../controller/room');
 const auth = require('../middleware/authenticator');
 const online = require('../controller/online');
+const match = require('../controller/match');
 
-
-router.get('/about', (req, res) => {
-    var users = [{
-        name: 'lucas',
-        email: 'lucas@123',
-        avatar: 'http://placebear.com/300/300'
-    }, {
-        name: 'jao',
-        email: 'teste@teste',
-        avatar: 'http://placebear.com/400/300'
-    }, {
-        name: 'blash',
-        email: 'blash@bkasdahk',
-        avatar: 'http://placebear.com/500/300'
-    }]
-
-    return res.render('pages/about', {
-        usuarios: users
-    })
-})
 
 router.get('/', auth, (req, res) => {
     return res.render('home.ejs');
+});
+
+router.get('/ranking', (req, res) => {
+    res.render('ranking.ejs', {
+        user: match.rankUser(req.session.user),
+        bestScore: match.bestScore(),
+        moreWins: match.moreWins(),
+        wellBottom: match.wellBottom()
+    });
 });
 
 router.get('/r/public/:id', auth, (req, res) => {

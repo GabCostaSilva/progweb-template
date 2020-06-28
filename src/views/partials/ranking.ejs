@@ -1,0 +1,152 @@
+<div id="rank-content">
+
+  <legend>
+    <h1>
+      <img src="/img/coroa.png" alt="icone">Ranking Global
+    </h1>
+  </legend>
+  <div class=field-group>
+    <div class="field">
+      <nav class="nav_tabs">
+        <ul>
+          <li>
+            <input type="radio" name="tabs" class="rd_tabs" id="tab1" checked>
+            <label for="tab1">Melhores Pontuações</label>
+            <div class="content">
+              <table>
+
+                <tr>
+                  <th>#</th>
+                  <th>Jogador</th>
+                  <th>Jogos</th>
+                  <th>Vitórias</th>
+                  <th>Derrotas</th>
+                  <th>Taxa de Vitórias</th>
+                  <th>Pontos</th>
+                </tr>
+
+                <% let i = 1 %>
+                <% for (player of bestScore) {%>
+                <tr>
+                  <td> <%= i++ %> </td>
+                  <td> <%= player.username %> </td>
+                  <td> <%= player.wins + user.loses %> </td>
+                  <td> <%= player.wins %> </td>
+                  <td> <%= player.loses %> </td>
+                  <td> <%= player.scoreRate %>% </td>
+                  <td> <%= player.totalScore %> </td>
+                </tr>
+                <% } %>
+
+              </table>
+
+            </div>
+          </li>
+          <li>
+            <input type="radio" name="tabs" class="rd_tabs" id="tab2">
+            <label for="tab2">Maiores Vitorias</label>
+            <div class="content">
+              <table>
+
+                <tr>
+                  <th>#</th>
+                  <th>Jogador</th>
+                  <th>Jogos</th>
+                  <th>Vitórias</th>
+                  <th>Derrotas</th>
+                  <th>Taxa de Vitórias</th>
+                  <th>Pontos</th>
+                </tr>
+
+                <% i = 1 %>
+                <% for (player of moreWins) {%>
+                <tr>
+                  <td> <%= i++ %> </td>
+                  <td> <%= player.username %> </td>
+                  <td> <%= player.wins + user.loses %> </td>
+                  <td> <%= player.wins %> </td>
+                  <td> <%= player.loses %> </td>
+                  <td> <%= player.scoreRate %>% </td>
+                  <td> <%= player.totalScore %> </td>
+                </tr>
+                <% } %>
+
+              </table>
+
+            </div>
+          </li>
+          <li>
+            <input type="radio" name="tabs" class="rd_tabs" id="tab3">
+            <label for="tab3">Fundo do poço</label>
+            <div class="content">
+
+              <table>
+
+
+                <tr>
+                  <th>#</th>
+                  <th>Jogador</th>
+                  <th>Jogos</th>
+                  <th>Vitórias</th>
+                  <th>Derrotas</th>
+                  <th>Taxa de Vitórias</th>
+                  <th>Pontos</th>
+
+                </tr>
+
+                <% i = 1 %>
+                <% for (player of wellBottom) {%>
+                <tr>
+                  <td> <%= i++ %> </td>
+                  <td> <%= player.username %> </td>
+                  <td> <%= player.wins + user.loses %> </td>
+                  <td> <%= player.wins %> </td>
+                  <td> <%= player.loses %> </td>
+                  <td> <%= player.scoreRate %>% </td>
+                  <td> <%= player.totalScore %> </td>
+                </tr>
+                <% } %>
+
+              </table>
+
+
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+
+    <div class="myinfo">
+      <label id="info">Info</label>
+      <div class="content">
+        <div>
+          <label for="lab">USUÁRIO</label>
+          <div id="field"> <%= user.username %> </div>
+
+        </div>
+        <div>
+          <label for="lab">JOGOS</label>
+          <div id="field"> <%= user.wins + user.loses %> </div>
+        </div>
+        <div>
+          <label for="lab">VITORIAS</label>
+          <div id="field"> <%= user.wins %> </div>
+        </div>
+        <div>
+          <label for="lab">DERROTAS</label>
+          <div id="field"> <%= user.loses %> </div>
+        </div>
+        <div>
+          <label for="lab">TV</label>
+          <div id="field"> <%= user.scoreRate %>% </div>
+        </div>
+        <div>
+          <label for="lab">PONTOS</label>
+          <div id="field"> <%= user.totalScore %> </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
