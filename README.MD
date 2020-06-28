@@ -2,8 +2,7 @@
 
 <!--- Exemplos de badges. Acesse https://shields.io para outras opções. Você pode querer incluir informações de dependencias, build, testes, licença, etc. --->
 
-![GitHub repo size](https://img.shields.io/github/repo-size/hsborges/progweb-template)
-![GitHub contributors](https://img.shields.io/github/contributors/hsborges/progweb-template)
+![GitHub license](https://img.shields.io/github/license/gabcostasilva/batalha-naval)
 
 Batalha Naval é um jogo de estratégia popular no mundo todo, conhecido pela possibilidade de jogá-lo somente com papel e caneta (e um oponente). Agora em sua versão século XXI. [Saiba mais sobre a história deste jogo](https://en.wikipedia.org/wiki/Battleship_(game)).
 
@@ -29,7 +28,7 @@ Após o término da instalação, o game estará rodando em <br><br>
 [http://localhost:3000](http://localhost:3000)
 ## Usando o Batalha Naval
 
-Como jogar
+### Como jogar
 - É preciso se cadastrar no primeiro acesso.
 - Após obter o login, é só utilizar o username cadastrado e asenha.
 - Inicialmente o jogo roda somente em localhost.
